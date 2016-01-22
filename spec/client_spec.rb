@@ -27,20 +27,20 @@ describe(Client) do
     end
   end
 
-  # describe('#update') do
-  #   it('updates changed attributes to the database for specfic record') do
-  #     stylist = test_stylist_one
-  #     stylist.save
-  #     stylist.update({"first_name" => 'Paul', "last_name" => 'Mitchell', "date_of_employment" => '1999-01-28 00:00:00',\
-  #        "certification_from" => 'Rick Ross School of Beauty', "certification_completed" => '1989-01-28 00:00:00'})
-  #     expect(stylist.first_name).to eq('Paul')
-  #     expect(stylist.last_name).to eq('Mitchell')
-  #     expect(stylist.date_of_employment).to eq('1999-01-28 00:00:00')
-  #     expect(stylist.certification_from).to eq('Rick Ross School of Beauty')
-  #     expect(stylist.certification_completed).to eq('1989-01-28 00:00:00')
-  #   end
-  # end
-  #
+  describe('#update') do
+    it('updates changed attributes to the database for specfic record') do
+      client = test_client_one
+      client.save
+      client.update({"first_name" => 'Plankton', "last_name" => 'Smith', "hair_style" => 'to the side',\
+         "preferred_appointment" => 'early afternoon', "stylist_id" => 1})
+      expect(client.first_name).to eq('Plankton')
+      expect(client.last_name).to eq('Smith')
+      expect(client.hair_style).to eq('to the side')
+      expect(client.preferred_appointment).to eq('early afternoon')
+      expect(client.stylist_id).to eq(1)
+    end
+  end
+
   # describe('#delete') do
   #   it('deletes record from database') do
   #     stylist = test_stylist_one

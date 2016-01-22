@@ -8,7 +8,7 @@ class Client
     @last_name = attribute.fetch(:last_name)
     @hair_style = attribute.fetch(:hair_style)
     @preferred_appointment = attribute.fetch(:preferred_appointment)
-    @stylist_id = attribute.fetch(:stylist_id)
+    @stylist_id = attribute.fetch(:stylist_id).to_i
   end
 
   def self.all
@@ -22,17 +22,17 @@ class Client
       @id = saved_client.first.fetch("id").to_i()
   end
 
-  # def update(attributes)
-  #   @id = self.id
-  #   @first_name = attributes.fetch("first_name")
-  #   @last_name = attributes.fetch("last_name")
-  #   @date_of_employment = attributes.fetch("date_of_employment")
-  #   @certification_from = attributes.fetch("certification_from")
-  #   @certification_completed = attributes.fetch("certification_completed")
-  #   DB.exec("UPDATE stylists SET (first_name, last_name, date_of_employment, certification_from, certification_completed) \
-  #     = ('#{@first_name}', '#{@last_name}', '#{@date_of_employment}', '#{@certification_from}', '#{@certification_completed}') WHERE id = #{@id};")
-  # end
-  #
+  def update(attributes)
+    @id = self.id
+    @first_name = attributes.fetch("first_name")
+    @last_name = attributes.fetch("last_name")
+    @hair_style = attributes.fetch("hair_style")
+    @preferred_appointment = attributes.fetch("preferred_appointment")
+    @stylist_id = attributes.fetch("stylist_id")
+    DB.exec("UPDATE clients SET (first_name, last_name, hair_style, preferred_appointment, stylist_id) \
+      = ('#{@first_name}', '#{@last_name}', '#{@hair_style}', '#{@preferred_appointment}', #{@stylist_id}) WHERE id = #{@id};")
+  end
+
   # def delete
   #   DB.exec("DELETE FROM stylists WHERE id = #{self.id};")
   # end
@@ -46,7 +46,7 @@ class Client
         :last_name => client.fetch('last_name'),
         :hair_style => client.fetch('hair_style'),
         :preferred_appointment => client.fetch('preferred_appointment'),
-        :stylist_id => client.fetch('stylist_id').to_i
+        :stylist_id => client.fetch('stylist_id')
         })
     end
     clients
