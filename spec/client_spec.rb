@@ -13,20 +13,20 @@ describe(Client) do
     end
   end
 
-  # describe('.all') do
-  #   it('is empty at first') do
-  #     expect(Stylist.all()).to(eq([]))
-  #   end
-  # end
-  #
-  # describe('#save') do
-  #   it('saves input to database') do
-  #     stylist = test_stylist_one
-  #     stylist.save
-  #     expect(Stylist.all).to eq([stylist])
-  #   end
-  # end
-  #
+  describe('.all') do
+    it('will select all clients from DB and store in an array, but empty at first') do
+      expect(Stylist.all()).to(eq([]))
+    end
+  end
+
+  describe('#save') do
+    it('saves input to database') do
+      client = test_client_one
+      client.save
+      expect(Client.all).to eq([client])
+    end
+  end
+
   # describe('#update') do
   #   it('updates changed attributes to the database for specfic record') do
   #     stylist = test_stylist_one
@@ -52,11 +52,11 @@ describe(Client) do
   #   end
   # end
   #
-  # describe("#==") do
-  #   it("is the same stylist if it has the same information") do
-  #     stylist_one = test_stylist_one
-  #     stylist_two = test_stylist_one
-  #     expect(stylist_one).to eq(stylist_two)
-  #   end
-  #end
+  describe("#==") do
+    it("is the same stylist if it has the same information") do
+      stylist_one = test_stylist_one
+      stylist_two = test_stylist_one
+      expect(stylist_one).to eq(stylist_two)
+    end
+  end
 end
