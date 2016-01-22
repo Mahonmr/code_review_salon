@@ -51,22 +51,12 @@ describe(Stylist) do
       expect(Stylist.all()).to(eq([stylist_two]))
     end
   end
-  #
-  # describe("#==") do
-  #   it("is the same book if it has the same information") do
-  #     book1 = create_test_book
-  #     book2 = create_test_book
-  #     expect(book1).to(eq(book2))
-  #   end
-  # end
-  #
-  # describe('.filter') do
-  #   it('filters based on user preference') do
-  #     book1 = create_test_book
-  #     book1.save
-  #     book2 = create_test_book_2
-  #     book2.save
-  #     expect(Book.filter('Fiction')).to(eq([book2]))
-  #   end
-  # end
+
+  describe("#==") do
+    it("is the same stylist if it has the same information") do
+      stylist_one = test_stylist_one
+      stylist_two = test_stylist_one
+      expect(stylist_one).to eq(stylist_two)
+    end
+  end
 end

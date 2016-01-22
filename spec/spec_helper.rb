@@ -35,16 +35,24 @@ def test_stylist_two
 end
 
 
-# def create_test_patron
-#   Patron.new({
-#     :id => nil,
-#     :name => "Mark"
-#     })
-# end
-#
-# def create_test_patron_2
-#   Patron.new({
-#     :id => nil,
-#     :name => "Jeff"
-#     })
-# end
+def test_client_one
+  Client.new({
+    :id => nil,
+    :first_name => "Plankton",
+    :last_name => "Smith",
+    :hair_style => "high and tight",
+    :preferred_appointment => "Mornings",
+    :stylist_id => 1
+    })
+end
+
+def test_client_two
+  Client.new({
+    :id => nil,
+    :first_name => "Mr",
+    :last_name => "Crabbs",
+    :hair_style => "business up front party in the back",
+    :preferred_appointment => "lunch time",
+    :stylist_id => 2
+    })
+end

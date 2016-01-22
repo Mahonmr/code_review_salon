@@ -36,20 +36,6 @@ class Stylist
   def delete
     DB.exec("DELETE FROM stylists WHERE id = #{self.id};")
   end
-  #
-  # def self.filter(filter)
-  #   returned_books = DB.exec("SELECT * FROM books WHERE author LIKE '%#{filter}%' OR
-  #    title LIKE '%#{filter}%' OR genre LIKE '%#{filter}%';")
-  #   Book.map_results_to_objects(returned_books)
-  # end
-  #
-  # def self.find(id)
-  #   books = Book.all
-  #   books.each do |book|
-  #     return book if book.id == id
-  #   end
-  #   book = nil
-  # end
 
   def self.map_results_to_objects(returned_stylists)
     stylists = []
