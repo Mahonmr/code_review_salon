@@ -85,12 +85,12 @@ describe('CRUD for stylist', {:type => :feature}) do
     expect(page).to(have_content('Beauty Perm'))
   end
 
-  # it('allows the salon owner to delete a client') do
-  #   client = test_client_one
-  #   client.save
-  #   visit("/clients")
-  #   expect(page).to(have_content('Plankton'))
-  #   click_link('Delete')
-  #   expect(page).to_not (have_content('Plankton'))
-  # end
+  it('allows the salon owner to delete a stylist') do
+    stylist = test_stylist_two
+    stylist.save
+    visit("/stylists")
+    expect(page).to(have_content('Sponge Bob'))
+    click_link('Delete')
+    expect(page).to_not (have_content('Sponge Bob'))
+  end
 end
