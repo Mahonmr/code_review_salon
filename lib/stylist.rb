@@ -16,6 +16,17 @@ class Stylist
     Stylist.map_results_to_objects(returned_stylists)
   end
 
+  def self.create(params)
+    Stylist.new({
+      :id => nil,
+      :first_name => params.fetch("first_name"),
+      :last_name => params.fetch("last_name"),
+      :date_of_employment => params.fetch("date_of_employment"),
+      :certification_from => params.fetch("certification_from"),
+      :certification_completed => params.fetch("certification_completed"),
+      })
+  end
+
   def save
     saved_stylist = DB.exec("INSERT INTO stylists (first_name, last_name, date_of_employment, certification_from, certification_completed)
       VALUES ('#{@first_name}', '#{@last_name}', '#{@date_of_employment}', '#{@certification_from}', '#{@certification_completed}') RETURNING id;")
