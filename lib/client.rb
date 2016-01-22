@@ -33,10 +33,10 @@ class Client
       = ('#{@first_name}', '#{@last_name}', '#{@hair_style}', '#{@preferred_appointment}', #{@stylist_id}) WHERE id = #{@id};")
   end
 
-  # def delete
-  #   DB.exec("DELETE FROM stylists WHERE id = #{self.id};")
-  # end
-  #
+  def delete
+    DB.exec("DELETE FROM clients WHERE id = #{self.id};")
+  end
+
   def self.map_results_to_objects(returned_clients)
     clients = []
     returned_clients.each() do |client|

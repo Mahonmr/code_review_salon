@@ -2,7 +2,7 @@ require ('spec_helper')
 
 describe(Client) do
   describe('attributes of client') do
-    it('will return information when inputted') do
+    it('will return information using attr_reader logic') do
       client = test_client_one
       expect(client.id).to eq(nil)
       expect(client.first_name).to  eq('Plankton')
@@ -15,7 +15,13 @@ describe(Client) do
 
   describe('.all') do
     it('will select all clients from DB and store in an array, but empty at first') do
-      expect(Stylist.all()).to(eq([]))
+      expect(Client.all).to(eq([]))
+    end
+
+    it('will select all clients from DB and store in an array') do
+      test_client_one.save
+      test_client_two.save
+      expect(Client.all.length).to eq(2)
     end
   end
 
@@ -41,17 +47,17 @@ describe(Client) do
     end
   end
 
-  # describe('#delete') do
-  #   it('deletes record from database') do
-  #     stylist = test_stylist_one
-  #     stylist.save
-  #     stylist_two = test_stylist_two
-  #     stylist_two.save
-  #     stylist.delete
-  #     expect(Stylist.all()).to(eq([stylist_two]))
-  #   end
-  # end
-  #
+  describe('#delete') do
+    it('deletes record from database') do
+      client = test_client_one
+      client.save
+      client_two = test_client_two
+      client_two.save
+      client.delete
+      expect(Client.all()).to(eq([client_two]))
+    end
+  end
+
   describe("#==") do
     it("is the same stylist if it has the same information") do
       stylist_one = test_stylist_one
