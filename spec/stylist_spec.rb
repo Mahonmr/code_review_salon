@@ -27,27 +27,30 @@ describe(Stylist) do
     end
   end
 
-  # describe('#update') do
-  #   it('updates input from database and stores to an array') do
-  #     test_book = create_test_book
-  #     test_book.save()
-  #     test_book.update({"author" => 'Mark Hammil', "title" => 'Teeth', "genre" => 'Non-Fiction'})
-  #     expect(test_book.author).to eq('Mark Hammil')
-  #     expect(test_book.title).to eq('Teeth')
-  #     expect(test_book.genre).to eq('Non-Fiction')
-  #   end
-  # end
-  #
-  # describe('#delete') do
-  #   it('deletes information from database') do
-  #     test_book = create_test_book
-  #     test_book.save
-  #     test_book2 = create_test_book_2
-  #     test_book2.save
-  #     test_book.delete
-  #     expect(Book.all()).to(eq([test_book2]))
-  #   end
-  # end
+  describe('#update') do
+    it('updates changed attributes to the database for specfic record') do
+      stylist = test_stylist_one
+      stylist.save
+      stylist.update({"first_name" => 'Paul', "last_name" => 'Mitchell', "date_of_employment" => '1999-01-28 00:00:00',\
+         "certification_from" => 'Rick Ross School of Beauty', "certification_completed" => '1989-01-28 00:00:00'})
+      expect(stylist.first_name).to eq('Paul')
+      expect(stylist.last_name).to eq('Mitchell')
+      expect(stylist.date_of_employment).to eq('1999-01-28 00:00:00')
+      expect(stylist.certification_from).to eq('Rick Ross School of Beauty')
+      expect(stylist.certification_completed).to eq('1989-01-28 00:00:00')
+    end
+  end
+
+  describe('#delete') do
+    it('deletes record from database') do
+      stylist = test_stylist_one
+      stylist.save
+      stylist_two = test_stylist_two
+      stylist_two.save
+      stylist.delete
+      expect(Stylist.all()).to(eq([stylist_two]))
+    end
+  end
   #
   # describe("#==") do
   #   it("is the same book if it has the same information") do

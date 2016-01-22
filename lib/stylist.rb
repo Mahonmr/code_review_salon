@@ -21,19 +21,21 @@ class Stylist
       VALUES ('#{@first_name}', '#{@last_name}', '#{@date_of_employment}', '#{@certification_from}', '#{@certification_completed}') RETURNING id;")
       @id = saved_stylist.first.fetch("id").to_i()
   end
-  #
-  # def update(attribute)
-  #   @genre = attribute.fetch("genre")
-  #
-  #   @title = attribute.fetch("title")
-  #   @id = self.id
-  #   DB.exec("UPDATE books SET (genre, author, title) \
-  #     = ('#{@genre}', '#{@author}', '#{@title}') WHERE id = #{@id};")
-  # end
-  #
-  # def delete
-  #   DB.exec("DELETE FROM books WHERE id = #{self.id};")
-  # end
+
+  def update(attributes)
+    @id = self.id
+    @first_name = attributes.fetch("first_name")
+    @last_name = attributes.fetch("last_name")
+    @date_of_employment = attributes.fetch("date_of_employment")
+    @certification_from = attributes.fetch("certification_from")
+    @certification_completed = attributes.fetch("certification_completed")
+    DB.exec("UPDATE stylists SET (first_name, last_name, date_of_employment, certification_from, certification_completed) \
+      = ('#{@first_name}', '#{@last_name}', '#{@date_of_employment}', '#{@certification_from}', '#{@certification_completed}') WHERE id = #{@id};")
+  end
+
+  def delete
+    DB.exec("DELETE FROM stylists WHERE id = #{self.id};")
+  end
   #
   # def self.filter(filter)
   #   returned_books = DB.exec("SELECT * FROM books WHERE author LIKE '%#{filter}%' OR
