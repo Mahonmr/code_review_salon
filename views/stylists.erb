@@ -1,0 +1,13 @@
+<h1>Stylists</h1>
+
+<ul>
+  <% @stylists.each do |stylist| %>
+    <li><%= stylist.first_name %>
+      <a href="/stylist/<%= stylist.id %>/show">Show</a>
+      <a href="/stylist/<%= stylist.id %>/edit">Edit</a>
+      <a href="/stylist/<%= stylist.id %>/delete">Delete</a>
+    </li>
+  <% end %>
+</ul>
+
+<a href="/">Back</a>

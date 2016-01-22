@@ -16,6 +16,17 @@ class Client
     Client.map_results_to_objects(returned_clients)
   end
 
+  def self.create(params)
+    Client.new({
+      :id => nil,
+      :first_name => params.fetch("first_name"),
+      :last_name => params.fetch("last_name"),
+      :hair_style => params.fetch("hair_style"),
+      :preferred_appointment => params.fetch("preferred_appointment"),
+      :stylist_id => nil,
+      })
+  end
+
   def save
     saved_client = DB.exec("INSERT INTO clients (first_name, last_name, hair_style, preferred_appointment, stylist_id)
       VALUES ('#{@first_name}', '#{@last_name}', '#{@hair_style}', '#{@preferred_appointment}', #{@stylist_id}) RETURNING id;")
@@ -28,13 +39,20 @@ class Client
     @last_name = attributes.fetch("last_name")
     @hair_style = attributes.fetch("hair_style")
     @preferred_appointment = attributes.fetch("preferred_appointment")
-    @stylist_id = attributes.fetch("stylist_id")
+    @stylist_id = attributes.fetch("stylist_id").to_i
     DB.exec("UPDATE clients SET (first_name, last_name, hair_style, preferred_appointment, stylist_id) \
       = ('#{@first_name}', '#{@last_name}', '#{@hair_style}', '#{@preferred_appointment}', #{@stylist_id}) WHERE id = #{@id};")
   end
 
   def delete
     DB.exec("DELETE FROM clients WHERE id = #{self.id};")
+  end
+
+  def self.find(id)
+    Client.all.each do |client|
+      return client if client.id == id
+    end
+    client = nil
   end
 
   def self.map_results_to_objects(returned_clients)

@@ -1,0 +1,17 @@
+<h1>Clients</h1>
+
+<a href="/client/new">Create New Client</a>
+<br>
+<br>
+<ul>
+  <% @clients.each do |client| %>
+    <li>
+      <%= client.first_name %>
+      <a href="/client/<%= client.id %>/show">Show</a>
+      <a href="/client/<%= client.id %>/edit">Edit</a>
+      <a href="/client/<%= client.id %>/delete">Delete</a>
+    </li>
+  <% end %>
+</ul>
+
+<a href="/">Back</a>
