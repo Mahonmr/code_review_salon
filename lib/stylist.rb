@@ -48,6 +48,13 @@ class Stylist
     DB.exec("DELETE FROM stylists WHERE id = #{self.id};")
   end
 
+  def self.find(id)
+    Stylist.all.each do |stylist|
+      return stylist if stylist.id == id
+    end
+    stylist = nil
+  end
+
   def self.map_results_to_objects(returned_stylists)
     stylists = []
     returned_stylists.each() do |stylist|

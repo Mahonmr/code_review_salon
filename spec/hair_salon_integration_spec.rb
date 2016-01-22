@@ -64,16 +64,17 @@ describe('CRUD for stylist', {:type => :feature}) do
     expect(page).to(have_content('Joy'))
   end
 
-  # it('allows the salon owner to view a client') do
-  #   client = test_client_one
-  #   client.save
-  #   visit("/client/#{client.id}/show")
-  #   expect(page).to(have_content("#{client.first_name}"))
-  #   expect(page).to(have_content("#{client.last_name}"))
-  #   expect(page).to(have_content("#{client.hair_style}"))
-  #   expect(page).to(have_content("#{client.preferred_appointment}"))
-  # end
-  #
+  it('allows the salon owner to view a client') do
+    stylist = test_stylist_one
+    stylist.save
+    visit("/stylist/#{stylist.id}/show")
+    expect(page).to(have_content("#{stylist.first_name}"))
+    expect(page).to(have_content("#{stylist.last_name}"))
+    expect(page).to(have_content("#{stylist.date_of_employment}"))
+    expect(page).to(have_content("#{stylist.certification_from}"))
+    expect(page).to(have_content("#{stylist.certification_completed}"))
+  end
+
   # it('allows the salon owner to edit a client') do
   #   client = test_client_one
   #   client.save
