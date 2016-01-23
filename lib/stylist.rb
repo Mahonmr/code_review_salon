@@ -55,6 +55,17 @@ class Stylist
     stylist = nil
   end
 
+  def self.clients(id)
+    @id = id
+    clients = DB.exec("SELECT * FROM stylists, clients WHERE \
+      #{@id} = clients.stylist_id;")
+    client_list = []
+    clients.each do |client|
+      client_list << client
+    end
+    return client_list
+  end
+
   def self.map_results_to_objects(returned_stylists)
     stylists = []
     returned_stylists.each() do |stylist|

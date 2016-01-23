@@ -35,10 +35,10 @@ class Client
 
   def update(attributes)
     @id = self.id
-    @first_name = attributes.fetch("first_name")
-    @last_name = attributes.fetch("last_name")
-    @hair_style = attributes.fetch("hair_style")
-    @preferred_appointment = attributes.fetch("preferred_appointment")
+    @first_name = attributes.has_key?("first_name") ? attributes.fetch("first_name") : self.first_name
+    @last_name = attributes.has_key?("last_name") ? attributes.fetch("last_name") : self.last_name
+    @hair_style = attributes.has_key?("hair_style") ? attributes.fetch("hair_style") : self.hair_style
+    @preferred_appointment = attributes.has_key?("preferred_appointment") ? attributes.fetch("preferred_appointment") : self.preferred_appointment
     @stylist_id = attributes.fetch("stylist_id").to_i
     DB.exec("UPDATE clients SET (first_name, last_name, hair_style, preferred_appointment, stylist_id) \
       = ('#{@first_name}', '#{@last_name}', '#{@hair_style}', '#{@preferred_appointment}', #{@stylist_id}) WHERE id = #{@id};")

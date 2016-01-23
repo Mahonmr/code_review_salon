@@ -5,4 +5,12 @@
 <h3><%= "Certification: #{@stylist.certification_from}" %></h3>
 <h3><%= "Certification Completed: #{@stylist.certification_completed}" %></h3><br>
 <br>
+
+<h3>Assigned Clients</h3>
+<ul>
+  <% @clients.each do |client| %>
+    <li><%= "Clients Name #{client.fetch("first_name")} #{client.fetch("last_name")}" %></li>
+  <% end %>
+</ul>
+
 <a href="/stylists">back</a>

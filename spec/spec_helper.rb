@@ -57,3 +57,14 @@ def test_client_two
     :stylist_id => 2
     })
 end
+
+def test_client_three
+  Client.new({
+    :id => nil,
+    :first_name => "Sandy",
+    :last_name => "Adams",
+    :hair_style => "high and tight",
+    :preferred_appointment => "Mornings",
+    :stylist_id => 0
+    })
+end

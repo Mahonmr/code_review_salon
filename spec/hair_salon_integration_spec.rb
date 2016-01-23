@@ -2,8 +2,6 @@ require('capybara/rspec')
 require('./app')
 require('spec_helper')
 
-DB = PG.connect({:dbname => 'hair_salon_test'})
-
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
@@ -92,5 +90,29 @@ describe('CRUD for stylist', {:type => :feature}) do
     expect(page).to(have_content('Sponge Bob'))
     click_link('Delete')
     expect(page).to_not (have_content('Sponge Bob'))
+  end
+end
+
+describe('stylists and clients relationships', {:type => :feature}) do
+  it('allows the salon owner assign a stylist to a client') do
+    stylist = test_stylist_two
+    stylist.save
+    client = test_client_three
+    client.save
+    visit("/stylist/#{stylist.id}/add_clients")
+    expect(page).to have_content('Sandy')
+    click_link('Add')
+    expect(page).to_not (have_content('Sandy'))
+  end
+
+  it('allows the salon owner to see list of clients assigned to stylist') do
+    stylist = test_stylist_two
+    stylist.save
+    client = test_client_three
+    client.save
+    visit("/stylist/#{stylist.id}/add_clients")
+    click_link('Add')
+    visit("/stylist/#{stylist.id}/show")
+    expect(page).to (have_content('Sandy'))
   end
 end
