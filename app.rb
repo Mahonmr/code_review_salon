@@ -68,7 +68,7 @@ end
 
 get('/stylist/:id/show') do
   @stylist = Stylist.find(params.fetch("id").to_i)
-  @clients = Stylist.clients(params.fetch("id").to_i)
+  @clients = @stylist.clients
   erb(:stylist_show)
 end
 

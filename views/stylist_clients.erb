@@ -2,7 +2,6 @@
 
 <ul>
   <% @clients.each do |client| %>
-  <%#= binding.pry %>
     <% unless client.stylist_id > 0 %>
       <li>
         <%= "Client  #{client.first_name} #{client.last_name}" %>
@@ -11,3 +10,7 @@
     <% end %>
   <% end %>
 </ul>
+
+<br>
+<br>
+<a href="/stylists">Back</a>

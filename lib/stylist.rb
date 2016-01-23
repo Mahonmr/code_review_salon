@@ -55,10 +55,8 @@ class Stylist
     stylist = nil
   end
 
-  def self.clients(id)
-    @id = id
-    clients = DB.exec("SELECT * FROM stylists, clients WHERE \
-      #{@id} = clients.stylist_id;")
+  def clients
+    clients = DB.exec("SELECT * FROM clients WHERE stylist_id = #{self.id};")
     client_list = []
     clients.each do |client|
       client_list << client
