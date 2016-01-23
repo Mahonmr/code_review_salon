@@ -2,7 +2,7 @@
 
 ###By: Mike Mahoney
 
-Salon App lets an owner of a salon to add, edit, delete, and view their clients
+Salon App lets an owner of a salon add, edit, delete, and view their clients
 and the stylists who work at the salon.  The owner can also assign clients to
 stylists and can later view a list of clients that are assigned to that stylist.
 
