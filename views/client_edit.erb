@@ -1,7 +1,7 @@
 <h1>Edit Client</h1>
 
 <div class= "container">
-  <form action="/client/<%= @client.id %>/update" method="post">
+  <form action="/clients/<%= @client.id %>/update" method="post">
     <input type="hidden" class="form-control" id="stylist_id" name="stylist_id" value="<%= @client.stylist_id %>">
     <div class="form-group">
       <label>Name</label>

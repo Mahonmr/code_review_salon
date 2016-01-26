@@ -5,7 +5,7 @@
     <% unless client.stylist_id > 0 %>
       <li>
         <%= "Client  #{client.first_name} #{client.last_name}" %>
-        <a href="/stylist/<%= @stylist.id %>/add_clients/<%= client.id %>">Add</a>
+        <a href="/stylists/<%= @stylist.id %>/add_clients/<%= client.id %>">Add</a>
       </li>
     <% end %>
   <% end %>

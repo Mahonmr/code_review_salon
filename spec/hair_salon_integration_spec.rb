@@ -21,7 +21,7 @@ describe('CRUD for clients', {:type => :feature}) do
   it('allows the salon owner to view a client') do
     client = test_client_one
     client.save
-    visit("/client/#{client.id}/show")
+    visit("/clients/#{client.id}/show")
     expect(page).to(have_content("#{client.first_name}"))
     expect(page).to(have_content("#{client.last_name}"))
     expect(page).to(have_content("#{client.hair_style}"))
@@ -31,10 +31,10 @@ describe('CRUD for clients', {:type => :feature}) do
   it('allows the salon owner to edit a client') do
     client = test_client_one
     client.save
-    visit("/client/#{client.id}/edit")
+    visit("/clients/#{client.id}/edit")
     fill_in('hair_style', :with => 'long')
     click_button('Submit')
-    visit("/client/#{client.id}/show")
+    visit("/clients/#{client.id}/show")
     expect(page).to(have_content('long'))
   end
 
@@ -65,7 +65,7 @@ describe('CRUD for stylist', {:type => :feature}) do
   it('allows the salon owner to view a stylist') do
     stylist = test_stylist_one
     stylist.save
-    visit("/stylist/#{stylist.id}/show")
+    visit("/stylists/#{stylist.id}/show")
     expect(page).to(have_content("#{stylist.first_name}"))
     expect(page).to(have_content("#{stylist.last_name}"))
     expect(page).to(have_content("#{stylist.date_of_employment}"))
@@ -76,10 +76,10 @@ describe('CRUD for stylist', {:type => :feature}) do
   it('allows the salon owner to edit a stylist') do
     stylist = test_stylist_one
     stylist.save
-    visit("/stylist/#{stylist.id}/edit")
+    visit("/stylists/#{stylist.id}/edit")
     fill_in('certification_from', :with => 'Beauty Perm')
     click_button('Submit')
-    visit("/stylist/#{stylist.id}/show")
+    visit("/stylists/#{stylist.id}/show")
     expect(page).to(have_content('Beauty Perm'))
   end
 
@@ -99,7 +99,7 @@ describe('stylists and clients relationships', {:type => :feature}) do
     stylist.save
     client = test_client_three
     client.save
-    visit("/stylist/#{stylist.id}/add_clients")
+    visit("/stylists/#{stylist.id}/add_clients")
     expect(page).to have_content('Sandy')
     click_link('Add')
     expect(page).to_not (have_content('Sandy'))
@@ -110,9 +110,9 @@ describe('stylists and clients relationships', {:type => :feature}) do
     stylist.save
     client = test_client_three
     client.save
-    visit("/stylist/#{stylist.id}/add_clients")
+    visit("/stylists/#{stylist.id}/add_clients")
     click_link('Add')
-    visit("/stylist/#{stylist.id}/show")
+    visit("/stylists/#{stylist.id}/show")
     expect(page).to (have_content('Sandy'))
   end
 end
